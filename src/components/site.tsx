@@ -15,7 +15,7 @@ export function Nav() {
           {user ? (
             <button onClick={logout} className="flex items-center gap-1.5 rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground"><LogOut className="h-4 w-4" /><span className="hidden sm:inline">{user.name.split(" ")[0]}</span></button>
           ) : (
-            <Link to="/login" className="flex items-center gap-1.5 rounded-full bg-gradient-brand px-4 py-1.5 font-semibold text-primary-foreground"><LogIn className="h-4 w-4" />Sign in</Link>
+            <Link to="/login" search={{ redirect: "" }} className="flex items-center gap-1.5 rounded-full bg-gradient-brand px-4 py-1.5 font-semibold text-primary-foreground"><LogIn className="h-4 w-4" />Sign in</Link>
           )}
         </nav>
       </div>

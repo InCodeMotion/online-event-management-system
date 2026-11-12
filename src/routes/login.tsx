@@ -4,13 +4,18 @@ import { Nav } from "@/components/site";
 import { login } from "@/lib/store";
 
 export const Route = createFileRoute("/login")({
-  validateSearch: (s: Record<string, unknown>) => ({ redirect: typeof s.redirect === "string" ? s.redirect : undefined }),
+  validateSearch: (s: Record<string, unknown>): { redirect: string } => {
+    const redirect = s["redirect"];
+    return { redirect: typeof redirect === "string" ? redirect : "" };
+  },
   head: () => ({
     meta: [
       { title: "Sign in — EventConnect" },
       { name: "description", content: "Sign in to book tickets and see your QR passes." },
       { property: "og:title", content: "Sign in — EventConnect" },
       { property: "og:description", content: "Sign in to EventConnect." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Login,
@@ -27,8 +32,8 @@ function Login() {
     e.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email)) return setErr("Enter a valid email");
     if (pw.length < 6) return setErr("Password must be at least 6 characters");
-    login({ name: name || email.split("@")[0], email });
-    nav({ to: redirect ?? "/explore" });
+    login({ name: name || email.split("@")[0] || "Guest", email });
+    nav({ to: redirect || "/explore" });
   };
   const field = "w-full rounded-2xl border border-input bg-card px-4 py-3 outline-none focus:border-primary";
   return (

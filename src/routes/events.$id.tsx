@@ -17,6 +17,8 @@ export const Route = createFileRoute("/events/$id")({
       { name: "description", content: loaderData?.description ?? "" },
       { property: "og:title", content: loaderData?.title ?? "Event" },
       { property: "og:description", content: loaderData?.description ?? "" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   notFoundComponent: () => <div className="p-20 text-center">Event not found. <Link to="/explore" className="text-accent">Back to explore</Link></div>,
@@ -33,7 +35,10 @@ function EventPage() {
   const left = e.capacity - e.booked - mine;
 
   const book = () => {
-    if (!user) return nav({ to: "/login", search: { redirect: `/events/${e.id}` } });
+    if (!user) {
+      nav({ to: "/login", search: { redirect: `/events/${e.id}` } });
+      return;
+    }
     try { bookTickets(e.id, qty); nav({ to: "/tickets" }); } catch (x) { setErr((x as Error).message); }
   };
   const share = async () => {

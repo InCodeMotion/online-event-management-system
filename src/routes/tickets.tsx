@@ -11,6 +11,8 @@ export const Route = createFileRoute("/tickets")({
       { name: "description", content: "Your booked events and QR entry passes." },
       { property: "og:title", content: "My Tickets — EventConnect" },
       { property: "og:description", content: "Your QR entry passes." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Tickets,
@@ -24,7 +26,7 @@ function Tickets() {
       <main className="mx-auto max-w-5xl px-6 pt-32">
         <h1 className="font-display text-4xl font-extrabold md:text-5xl">My <span className="text-gradient">tickets</span></h1>
         {!user ? (
-          <p className="mt-10 text-muted-foreground"><Link to="/login" className="text-accent">Sign in</Link> to see your tickets.</p>
+          <p className="mt-10 text-muted-foreground"><Link to="/login" search={{ redirect: "" }} className="text-accent">Sign in</Link> to see your tickets.</p>
         ) : bookings.length === 0 ? (
           <p className="mt-10 text-muted-foreground">No tickets yet. <Link to="/explore" className="text-accent">Find an event</Link></p>
         ) : (

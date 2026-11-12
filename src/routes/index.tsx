@@ -13,6 +13,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Discover parties, concerts and college fests, book tickets and get QR entry passes." },
       { property: "og:title", content: "EventConnect — Find Your Crowd" },
       { property: "og:description", content: "Discover events, book tickets, and meet your crowd." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,

@@ -6,16 +6,22 @@ import { EVENTS, CATEGORIES } from "@/lib/events";
 type S = { q?: string; category?: string };
 
 export const Route = createFileRoute("/explore")({
-  validateSearch: (s: Record<string, unknown>): S => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    category: typeof s.category === "string" ? s.category : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): S => {
+    const q = s["q"];
+    const category = s["category"];
+    return {
+      ...(typeof q === "string" ? { q } : {}),
+      ...(typeof category === "string" ? { category } : {}),
+    };
+  },
   head: () => ({
     meta: [
       { title: "Explore Events — EventConnect" },
       { name: "description", content: "Search and filter parties, concerts, fests and meetups." },
       { property: "og:title", content: "Explore Events — EventConnect" },
       { property: "og:description", content: "Search and filter events near you." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Explore,

@@ -1,24 +1,22 @@
-# Online Event Management System 
+# EventConnect
 
-Implement exactly the screenshot and nothing else
+**Find Your Crowd. Feel the Moment.**
 
-This project was built with [Lovable](https://lovable.dev).
+EventConnect is a college software engineering project for discovering events, booking tickets, and presenting QR entry passes.
 
-## Build with Lovable
+## Run the website
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/48a3517e-2695-455e-95d6-72acddc6115f).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Requirements: Node.js and Bun.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
+git clone <repository-url>
+cd <repository-folder>
+bun install
+bun run dev
 ```
+
+The current website preview uses sample events and browser storage for its demo sign-in and bookings. It does not yet connect to the Java service.
+
+## Java backend
+
+The separate `eventconnect-backend.zip` source package contains the Java 21, Spring Boot, JDBC, and MySQL backend, including setup instructions and tests. Unzip it beside this README and follow its `README.md` to run the service locally.
